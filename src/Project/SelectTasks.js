@@ -43,7 +43,7 @@ export default function SelectTasks() {
         variant="contained"
         ref={anchorRef}
         aria-label="Button group with a nested menu"
-        color='primary'
+        color='secondary'
         
       >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
