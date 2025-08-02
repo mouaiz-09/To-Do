@@ -53,6 +53,7 @@ export default function ToDoList(params) {
   function deletTask(ids) {
     console.log(ids);
 
+    
     const newTaskss = Tasks.filter((e) => {
       if (e.id == ids) {
         return false;
