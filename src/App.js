@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./index.css"
+import ToDoList from "./Project/ToDoList";
 
-function App() {
+export default function CircularIndeterminate() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div style={{
+        background: "rgb(4, 53, 42)",
+        color: "whitesmoke",
+        display: "flex",
+        justifyContent: "start",
+        alignItems: "center",
+        height: "100vh",
+        flexDirection: "column",
+        gap: "20px"
+
+      }}   >
+        <div style={{ width: "100%", height: "100px", display: "flex", justifyContent: "center", alignItems: "center" }} >
+          <h1 style={{
+            fontSize: "25px",
+            background: "rgb(20,20,30)",
+            borderRadius: "15px",
+            padding: "10px",
+
+          }}>  To Do Liste</h1>
+        </div>
+
+      
+     
+          <ToDoList></ToDoList>
+
+
+      
+
+
+
+
+      </div >
+    </>
   );
 }
-
-export default App;
