@@ -8,7 +8,8 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import * as React from 'react'
-const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
+import {purple} from "@mui/material/colors"
+const options = ['All Tasks', 'Complted', 'Not Complted'];
 
 export default function SelectTasks() {
   const [open, setOpen] = React.useState(false);
@@ -42,6 +43,8 @@ export default function SelectTasks() {
         variant="contained"
         ref={anchorRef}
         aria-label="Button group with a nested menu"
+        color='primary'
+        
       >
         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
@@ -73,13 +76,13 @@ export default function SelectTasks() {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu" autoFocusItem>
+                <MenuList id="split-button-menu"   autoFocusItem>
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
+                      
                     >
                       {option}
                     </MenuItem>

@@ -23,6 +23,8 @@ export default function MenuGroup() {
         orientation="vertical"
         aria-label="Vertical button group"
         variant="contained"
+        style={{width:"100%"}}
+        color='primary'
       >
         {buttons}
       </ButtonGroup>
