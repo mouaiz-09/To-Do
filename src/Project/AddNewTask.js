@@ -19,7 +19,7 @@ export default function AddNewTask({openstatue,FunctionhandleClose , FunctionAdd
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
-    const email = formJson.email;
+    const email = formJson.id;
     console.log(email);
   FunctionAddTask(formJson)
      

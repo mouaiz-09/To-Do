@@ -3,9 +3,9 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 
 const buttons = [
-  <Button  style={{borderRadius:"7px  0px 0px 0px" }} key="one">ALL Tasks</Button>,
-  <Button  style={{borderRadius:"0px  0px 0px 0px" }} key="two">Comleted</Button>,
-  <Button  style={{borderRadius:"0px  0px 0px 0px" }} key="three">NotCompleted</Button>,
+  <Button  style={{borderRadius:"7px  0px 0px 0px", padding:"10px" }} key="one">ALL Tasks</Button>,
+  <Button  style={{borderRadius:"0px  0px 0px 0px", padding:"10px" }} key="two">Comleted</Button>,
+  <Button  style={{borderRadius:"0px  0px 0px 0px", padding:"10px" }} key="three">NotCompleted</Button>,
 ];
 
 export default function MenuGroup() {

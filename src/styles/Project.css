@@ -13,6 +13,7 @@
 }
 body{
     background-color: rgb(10,20,30);
+ 
 }
 
 .ToDocontenet {
@@ -51,6 +52,7 @@ body{
 
 
 
+
 /*ContentTasks*/
 .ToDocontenet .ContentTasks {
     flex: 4;
@@ -67,7 +69,8 @@ body{
 }
 .ContentTasks .ContentTasksBody{
     padding-top: 10px;
-    overflow: scroll !important;
+     max-height:85% !important;
+     overflow: scroll;
 
 }
 .c{
