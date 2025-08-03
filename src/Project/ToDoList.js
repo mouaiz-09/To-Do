@@ -44,6 +44,7 @@ export default function ToDoList(params) {
           statue={task.state}
           IdTask={task.id}
           functiondelet={deletTask}
+          functionedetstate={edetstate}
         ></TodoCard>
       </Button>
     );
@@ -53,13 +54,33 @@ export default function ToDoList(params) {
   function deletTask(ids) {
     console.log(ids);
 
-    
     const newTaskss = Tasks.filter((e) => {
       if (e.id == ids) {
         return false;
       } else return true;
     });
     SetTASKS(newTaskss);
+  }
+
+  //edit satate
+  function edetstate(ids) {
+   
+    const newTaskss = Tasks.map((task) => {
+      if (task.id === ids) {
+
+         if (task.state) {
+          return { ...task, state: false };
+         }
+         else {
+          return { ...task, state: true };
+         }
+      }
+      else return {...task}
+     
+    });
+    console.log(newTaskss);
+    SetTASKS(newTaskss)
+    
   }
 
   const themp = createTheme({

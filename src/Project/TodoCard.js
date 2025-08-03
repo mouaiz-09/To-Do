@@ -1,7 +1,7 @@
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import {  purple } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
 
@@ -20,10 +20,14 @@ export default function TodoCard({
   statue,
   IdTask,
   functiondelet,
+  functionedetstate,
 }) {
-  const deletTask = ()=>{
+  const deletTask = () => {
     functiondelet(IdTask);
-  }
+  };
+  const edetstate = () => {
+    functionedetstate(IdTask);
+  };
   return (
     <Card
       style={{
@@ -57,6 +61,9 @@ export default function TodoCard({
         <div>
           <Checkbox
             {...label}
+            onClick={(e) => {
+              edetstate()
+            }}
             checked={statue}
             icon={
               <CheckCircleOutlineOutlinedIcon fontSize="medium" color="info" />
@@ -71,8 +78,8 @@ export default function TodoCard({
           />
           <Checkbox
             {...label}
-            onClick={()=>{
-              deletTask()
+            onClick={() => {
+              deletTask();
             }}
             icon={<DeleteOutlineRoundedIcon color="info" fontSize="medium" />}
             checkedIcon={<DeleteRoundedIcon color="error" />}
