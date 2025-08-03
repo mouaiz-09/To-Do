@@ -12,7 +12,7 @@
     
 }
 body{
-    background-color: rgb(10,20,30);
+    background-color: rgb(16, 128, 26);
  
 }
 
@@ -26,9 +26,8 @@ body{
     flex-direction: row;
     gap: 3px;
     border-radius: 10px;
-    background-color: white;
-   
-
+    
+    background-color: rgba(7, 107, 114, 0.774);
 
 }
 
@@ -40,13 +39,14 @@ body{
 
     flex: 1;
     height: 100% !important;
-    background-color: var(--color-main);
-    background-color: gray;
+   
+    background-color: rgba(2, 40, 58, 0.671);
     width: min-content;
     border-radius: 10px 0px 0px 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+ 
     
 }
 

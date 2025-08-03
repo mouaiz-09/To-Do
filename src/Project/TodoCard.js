@@ -32,7 +32,7 @@ export default function TodoCard({
     <Card
       style={{
         width: "100% ",
-        background: purple[900],
+        background: statue ? "green" : "red",
         maxHeight: "100px",
         overflow: "hidden",
         display: "flex",
@@ -62,7 +62,7 @@ export default function TodoCard({
           <Checkbox
             {...label}
             onClick={(e) => {
-              edetstate()
+              edetstate();
             }}
             checked={statue}
             icon={

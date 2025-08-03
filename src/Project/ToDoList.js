@@ -3,12 +3,13 @@ import MenuGroup from "./MenuGroup";
 import SelectTasks from "./SelectTasks";
 import { lightBlue, lightGreen, purple, red } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import TodoCard from "./TodoCard";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import AddNewTask from "./AddNewTask";
 import NOData from "./NoData";
-
+import ALLTASKS from "./ALLTasks";
+import Complted from "./Completed";
+import NotCompleted from "./NotCompleted";
 export default function ToDoList(params) {
   // State & function For Open Close Dea Page:
   const [open, setOpen] = useState(false);
@@ -18,8 +19,21 @@ export default function ToDoList(params) {
   const handleClickclose = () => {
     setOpen(false);
   };
-  // State & function For ADd Tasks:
-  const [Tasks, SetTASKS] = useState([]);
+  // State & function For Add Tasks:
+  const [Tasks, SetTASKS] = useState([
+    {
+      Titel: "Completed",
+      des: "test,",
+      state: true,
+      id: Date.now(),
+    },
+    {
+      Titel: "notcopleted",
+      des: "test,",
+      state: false,
+      id: Date.apply(),
+    },
+  ]);
 
   //ADD TASK IN Statae:
   function AddTask(Value) {
@@ -34,55 +48,30 @@ export default function ToDoList(params) {
     ]);
   }
 
-  const TasksResult = Tasks.map((task) => {
-    return (
-      <Button fullWidth>
-        <TodoCard
-          key={task.id}
-          Titel={task.Titel}
-          des={task.des}
-          statue={task.state}
-          IdTask={task.id}
-          functiondelet={deletTask}
-          functionedetstate={edetstate}
-        ></TodoCard>
-      </Button>
-    );
-  });
+  //state for filter:
+  const [filter, setfliter] = useState("ALL"); // ALL, Cpmleted , Not Completed
 
-  //remove TASK From Statae:
-  function deletTask(ids) {
-    console.log(ids);
-
-    const newTaskss = Tasks.filter((e) => {
-      if (e.id == ids) {
-        return false;
-      } else return true;
-    });
-    SetTASKS(newTaskss);
-  }
-
-  //edit satate
-  function edetstate(ids) {
-   
-    const newTaskss = Tasks.map((task) => {
-      if (task.id === ids) {
-
-         if (task.state) {
-          return { ...task, state: false };
-         }
-         else {
-          return { ...task, state: true };
-         }
+  function Result(params) {
+    if (filter == "ALL") {
+      return (
+        <>
+          <ALLTASKS Datat={Tasks} SetDATA={SetTASKS}></ALLTASKS>
+        </>
+      );
+    } else {
+      if (filter == "Cpmleted") {
+        return <Complted Datat={Tasks} SetDATA={SetTASKS}></Complted>;
+      } else {
+        return <NotCompleted Datat={Tasks} SetDATA={SetTASKS}></NotCompleted>;
       }
-      else return {...task}
-     
-    });
-    console.log(newTaskss);
-    SetTASKS(newTaskss)
-    
+    }
   }
 
+  function EditeFilter(value) {
+    setfliter(value);
+  }
+
+  //them of project:
   const themp = createTheme({
     palette: {
       primary: {
@@ -109,9 +98,9 @@ export default function ToDoList(params) {
         <div className="ToDocontenet">
           <div
             className="menu"
-            style={{ background: "rgba(10, 10, 10, 0.56)", height: "100% " }}
+        
           >
-            <MenuGroup />
+            <MenuGroup functionEditeFilter={EditeFilter} filter={filter} />
 
             <Button
               color="secondary"
@@ -134,11 +123,11 @@ export default function ToDoList(params) {
                   marginBottom: "7px",
                 }}
               >
-                <SelectTasks></SelectTasks>
+                <SelectTasks  state={filter}></SelectTasks>
               </div>
 
               <div className="ContentTasksBody">
-                {Tasks.length >= 1 ? TasksResult : <NOData></NOData>}
+                {Tasks.length >= 1 ? <Result></Result> : <NOData></NOData>}
               </div>
             </div>
 
