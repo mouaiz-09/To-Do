@@ -23,7 +23,7 @@ export default function NOData() {
           alignItems: "center",
         }}
       >
-        <h1>No Task</h1>
+        <h1>No Tasks</h1>
         <ReportProblemSharpIcon
           style={{
             color: "red",
@@ -31,7 +31,7 @@ export default function NOData() {
           }}
         />
       </div>
-      <p style={{color:"black"}}>
+      <p style={{color:"whitesmoke"}}>
         you can add one in Button buttom
       </p>
     </div>

@@ -1,7 +1,10 @@
 import TodoCard from "./TodoCard";
 import Button from "@mui/material/Button";
 
-export default function ALLTASKS({ Datat,SetDATA }) {
+export default function ALLTASKS({ Datat, SetDATA }) {
+
+
+  //all tasks show
   const TasksResult = Datat.map((task) => {
     return (
       <Button fullWidth>
@@ -13,6 +16,7 @@ export default function ALLTASKS({ Datat,SetDATA }) {
           IdTask={task.id}
           functiondelet={deletTask}
           functionedetstate={edetstate}
+          EdetTaskState ={EdeteTask}
         ></TodoCard>
       </Button>
     );
@@ -43,8 +47,30 @@ export default function ALLTASKS({ Datat,SetDATA }) {
 
     SetDATA(newTaskss);
   }
+ //edet task
 
-  return <>
-  {TasksResult}
-  </>;
+ function EdeteTask(ids,value) {
+   const  Titeltask = value.Titel;
+   const  destask = value.des;
+
+   const newTaskss = Datat.map((task) => {
+      if (task.id === ids) {
+      return { ...task ,Titel:Titeltask , des:destask , id:ids };
+      } else return { ...task };
+    });
+
+  SetDATA(newTaskss);
+  
+   console.log("the titel is: " + Titeltask);
+   console.log("the des is: " + destask);
+   console.log("the ids is:   " + ids);
+ }
+
+
+  return (
+    <>
+      {TasksResult}
+     
+    </>
+  );
 }

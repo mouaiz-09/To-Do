@@ -17,6 +17,7 @@ export default function Completed({ Datat, SetDATA }) {
             IdTask={task.id}
             functiondelet={deletTask}
             functionedetstate={edetstate}
+            EdetTaskState ={EdeteTask}
           ></TodoCard>
         </Button>
       );
@@ -49,7 +50,24 @@ export default function Completed({ Datat, SetDATA }) {
 
     SetDATA(newTaskss);
   }
+//edet task
 
+ function EdeteTask(ids,value) {
+   const  Titeltask = value.Titel;
+   const  destask = value.des;
+
+   const newTaskss = Datat.map((task) => {
+      if (task.id === ids) {
+      return { ...task ,Titel:Titeltask , des:destask , id:ids };
+      } else return { ...task };
+    });
+
+  SetDATA(newTaskss);
+  
+   console.log("the titel is: " + Titeltask);
+   console.log("the des is: " + destask);
+   console.log("the ids is:   " + ids);
+ }
 
   
   

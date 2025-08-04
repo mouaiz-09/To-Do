@@ -3,10 +3,10 @@ import TodoCard from "./TodoCard";
 import Button from "@mui/material/Button";
 
 export default function NotCompleted({ Datat, SetDATA }) {
-  const  ar = []
+  const ar = [];
   const TasksResult = Datat.map((task) => {
     if (task.state == false) {
-     ar.push('zizo')
+      ar.push("zizo");
       return (
         <Button fullWidth>
           <TodoCard
@@ -17,10 +17,11 @@ export default function NotCompleted({ Datat, SetDATA }) {
             IdTask={task.id}
             functiondelet={deletTask}
             functionedetstate={edetstate}
+            EdetTaskState={EdeteTask}
           ></TodoCard>
         </Button>
       );
-    } else return <></>
+    } else return <></>;
   });
   //remove TASK From Statae:
   function deletTask(ids) {
@@ -30,7 +31,6 @@ export default function NotCompleted({ Datat, SetDATA }) {
       if (e.id == ids) {
         return false;
       } else return true;
-
     });
     SetDATA(newTaskss);
   }
@@ -49,7 +49,24 @@ export default function NotCompleted({ Datat, SetDATA }) {
 
     SetDATA(newTaskss);
   }
+  //edet task
 
-  return <>{ar.length >= 1 ?  TasksResult  : <NOData/>}</>;
- 
+  function EdeteTask(ids, value) {
+    const Titeltask = value.Titel;
+    const destask = value.des;
+
+    const newTaskss = Datat.map((task) => {
+      if (task.id === ids) {
+        return { ...task, Titel: Titeltask, des: destask, id: ids };
+      } else return { ...task };
+    });
+
+    SetDATA(newTaskss);
+
+    console.log("the titel is: " + Titeltask);
+    console.log("the des is: " + destask);
+    console.log("the ids is:   " + ids);
+  }
+
+  return <>{ar.length >= 1 ? TasksResult : <NOData />}</>;
 }
