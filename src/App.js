@@ -1,7 +1,7 @@
 import "./App.css";
 import "./index.css";
 import ToDoList from "./Project/ToDoList";
-import { purple, lightBlue } from "@mui/material/colors";
+import {  lightBlue } from "@mui/material/colors";
 
 export default function CircularIndeterminate() {
   return (
@@ -36,7 +36,7 @@ export default function CircularIndeterminate() {
             }}
           >
             {" "}
-            To Do Liste
+          مهامي
           </h1>
         </div>
 

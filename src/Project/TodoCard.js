@@ -2,17 +2,18 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
+import "../styles/Project.css";
 
 import EdetTasks from "./EdetTasks";
 /* icons  */
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { Button } from "@mui/material";
-import { useState } from "react";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -40,6 +41,7 @@ export default function TodoCard({
   return (
     <>
       <Card
+        className="card"
         style={{
           width: "100% ",
           background: statue ? "green" : "red",
@@ -69,7 +71,9 @@ export default function TodoCard({
         </CardContent>
         <CardActions>
           <div>
+            {/* ==Btn Copleted==*/}
             <Checkbox
+              className="Btn"
               {...label}
               onClick={(e) => {
                 edetstate();
@@ -78,27 +82,74 @@ export default function TodoCard({
               icon={
                 <CheckCircleOutlineOutlinedIcon
                   fontSize="medium"
-                  color="info"
+                  style={{
+                    background: "rgb(255, 255, 255)",
+                    color: "#8bc349",
+                    borderRadius: "50%",
+                  }}
                 />
               }
               checkedIcon={<CheckCircleIcon color="success" />}
             />
+            {/* ========Btn Copleted==============*/}
 
-            <Button
+            {/*==Btn Edite==*/}
+            <Checkbox
+              className="Btn"
               {...label}
               onClick={() => {
                 hendelopen();
               }}
-              startIcon={<EditOutlinedIcon color="info" fontSize="medium" />}
+              checked={open}
+              checkedIcon={
+                <ModeEditOutlinedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "#1769aa",
+                    color: "rgb(255, 255, 255)",
+                    borderRadius: "50%",
+                    border: "1px solid rgb(255, 255, 255) ",
+                    padding: "1px",
+                  }}
+                />
+              }
+              icon={
+                <ModeEditOutlinedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "rgb(255, 255, 255)",
+                    color: "#1769aa",
+                    borderRadius: "50%",
+                    border: "1px solid #1769aa ",
+                    padding: "1px",
+                  }}
+                />
+              }
             />
+            {/* ========Btn Edite==============*/}
+            {/*==Btn Delet==*/}
             <Checkbox
+              className="Btn"
               {...label}
               onClick={() => {
                 deletTask();
               }}
-              icon={<DeleteOutlineRoundedIcon color="info" fontSize="medium" />}
+              icon={
+                <DeleteOutlineRoundedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "rgb(255, 255, 255)",
+                    color: "#b23c17",
+                    borderRadius: "50%",
+                    border: "1px solid #b23c17 ",
+                    padding: "1px",
+                  }}
+                />
+              }
               checkedIcon={<DeleteRoundedIcon color="error" />}
             />
+
+            {/* ========Btn Delet==============*/}
           </div>
         </CardActions>
       </Card>
@@ -109,7 +160,7 @@ export default function TodoCard({
           titel={Titel}
           des={des}
           FunctionedetTask={(value) => {
-            EdetTaskState(IdTask,value);
+            EdetTaskState(IdTask, value);
           }}
         ></EdetTasks>
       ) : (

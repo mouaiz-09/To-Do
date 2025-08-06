@@ -8,9 +8,8 @@ export default function NotCompleted({ Datat, SetDATA }) {
     if (task.state == false) {
       ar.push("zizo");
       return (
-        <Button fullWidth>
+        <Button key={task.id} fullWidth>
           <TodoCard
-            key={task.id}
             Titel={task.Titel}
             des={task.des}
             statue={task.state}

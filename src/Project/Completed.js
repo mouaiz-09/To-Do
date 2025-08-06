@@ -8,16 +8,15 @@ export default function Completed({ Datat, SetDATA }) {
     if (task.state) {
       ar.push("zizo");
       return (
-        <Button fullWidth>
+        <Button key={task.id} fullWidth>
           <TodoCard
-            key={task.id}
             Titel={task.Titel}
             des={task.des}
             statue={task.state}
             IdTask={task.id}
             functiondelet={deletTask}
             functionedetstate={edetstate}
-            EdetTaskState ={EdeteTask}
+            EdetTaskState={EdeteTask}
           ></TodoCard>
         </Button>
       );

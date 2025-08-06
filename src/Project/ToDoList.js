@@ -4,12 +4,17 @@ import SelectTasks from "./SelectTasks";
 import { lightBlue, lightGreen, purple, red } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddNewTask from "./AddNewTask";
 import NOData from "./NoData";
 import ALLTASKS from "./ALLTasks";
 import Complted from "./Completed";
 import NotCompleted from "./NotCompleted";
+// icosn
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 export default function ToDoList(params) {
   // State & function For Open Close Dea Page:
   const [open, setOpen] = useState(false);
@@ -19,20 +24,9 @@ export default function ToDoList(params) {
   const handleClickclose = () => {
     setOpen(false);
   };
-  // State & function For Add Tasks:
+  // State & function For  Tasks:
   const [Tasks, SetTASKS] = useState([
-    {
-      Titel: "Completed",
-      des: "test,",
-      state: true,
-      id: Date.now(),
-    },
-    {
-      Titel: "notcopleted",
-      des: "test,",
-      state: false,
-      id: Date.apply(),
-    },
+    
   ]);
 
   //ADD TASK IN Statae:
@@ -46,12 +40,21 @@ export default function ToDoList(params) {
         id: Date.now(),
       },
     ]);
+    const data = [
+      ...Tasks,
+      {
+        Titel: Value.Titel,
+        des: Value.des,
+        state: false,
+        id: Date.now(),
+      },
+    ];
+    localStorage.setItem("todos", JSON.stringify(data));
   }
 
   //state for filter:
   const [filter, setfliter] = useState("ALL"); // ALL, Cpmleted , Not Completed
-
-  function Result(params) {
+  function Result() {
     if (filter == "ALL") {
       return (
         <>
@@ -66,7 +69,6 @@ export default function ToDoList(params) {
       }
     }
   }
-
   function EditeFilter(value) {
     setfliter(value);
   }
@@ -91,25 +93,51 @@ export default function ToDoList(params) {
       },
     },
   });
-  
+
+  useEffect(()=>{
+    if (localStorage.todos) {
+      const data = JSON.parse(localStorage.getItem("todos"));
+      console.log(data);
+      if (data.length >=0) {
+       
+        SetTASKS(data)
+      }
+    }
+   
+   
+  }, [])
 
   return (
     <ThemeProvider theme={themp}>
-      <div className="Todo">
+      <div className="Todo" onMouseMove={() => {}}>
         <div className="ToDocontenet">
-          <div
-            className="menu"
-        
-          >
+          <div className="menu">
             <MenuGroup functionEditeFilter={EditeFilter} filter={filter} />
-
-            <Button
-              color="secondary"
-              style={{ borderRadius: "0px 0px 0px 7px" }}
-              variant="contained"
+            {/*sh medai */}
+            <div
+              style={{
+                background: "rgb(0, 41, 51)",
+                padding: "7px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "5px",
+              }}
             >
-              Contained
-            </Button>
+              <a
+                href="http://instgram.com/abde_elmouaiz_10"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstagramIcon />
+              </a>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <FacebookIcon />
+              </a>
+              <a href="http://" target="_blank" rel="noopener noreferrer">
+                <GitHubIcon />
+              </a>
+            </div>
           </div>
           <div className="ContentTasks">
             <div className="c">
@@ -124,7 +152,7 @@ export default function ToDoList(params) {
                   marginBottom: "7px",
                 }}
               >
-                <SelectTasks  state={filter}></SelectTasks>
+                <SelectTasks setstate={setfliter} state={filter}></SelectTasks>
               </div>
 
               <div className="ContentTasksBody">
@@ -139,9 +167,17 @@ export default function ToDoList(params) {
                   color="secondary"
                   fullWidth
                   onClick={handleClickOpen}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "end",
+                    flexDirection: "row",
+                    fontFamily: "cursive",
+                    gap: "2px",
+                  }}
                 >
-                  {" "}
-                  add new task
+                  <AddCircleOutlineIcon />
+                  اضافة مهمة جديدة
                 </Button>
               </div>
             </div>

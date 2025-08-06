@@ -2,21 +2,18 @@ import TodoCard from "./TodoCard";
 import Button from "@mui/material/Button";
 
 export default function ALLTASKS({ Datat, SetDATA }) {
-
-
   //all tasks show
   const TasksResult = Datat.map((task) => {
     return (
-      <Button fullWidth>
+      <Button key={task.id} fullWidth>
         <TodoCard
-          key={task.id}
           Titel={task.Titel}
           des={task.des}
           statue={task.state}
           IdTask={task.id}
           functiondelet={deletTask}
           functionedetstate={edetstate}
-          EdetTaskState ={EdeteTask}
+          EdetTaskState={EdeteTask}
         ></TodoCard>
       </Button>
     );
@@ -30,7 +27,12 @@ export default function ALLTASKS({ Datat, SetDATA }) {
         return false;
       } else return true;
     });
+
     SetDATA(newTaskss);
+    localStorage.todos = JSON.stringify(newTaskss); 
+    
+ 
+
   }
 
   //edit satate
@@ -46,31 +48,26 @@ export default function ALLTASKS({ Datat, SetDATA }) {
     });
 
     SetDATA(newTaskss);
+
+    localStorage.todos = JSON.stringify(newTaskss) 
   }
- //edet task
 
- function EdeteTask(ids,value) {
-   const  Titeltask = value.Titel;
-   const  destask = value.des;
+  //edet task
 
-   const newTaskss = Datat.map((task) => {
+  function EdeteTask(ids, value) {
+    const Titeltask = value.Titel;
+    const destask = value.des;
+
+    const newTaskss = Datat.map((task) => {
       if (task.id === ids) {
-      return { ...task ,Titel:Titeltask , des:destask , id:ids };
+        return { ...task, Titel: Titeltask, des: destask, id: ids };
       } else return { ...task };
+
     });
 
-  SetDATA(newTaskss);
-  
-   console.log("the titel is: " + Titeltask);
-   console.log("the des is: " + destask);
-   console.log("the ids is:   " + ids);
- }
+    SetDATA(newTaskss);
+    localStorage.todos = JSON.stringify(newTaskss); 
+  }
 
-
-  return (
-    <>
-      {TasksResult}
-     
-    </>
-  );
+  return <>{TasksResult}</>;
 }

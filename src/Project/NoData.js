@@ -23,17 +23,22 @@ export default function NOData() {
           alignItems: "center",
         }}
       >
-        <h1>No Tasks</h1>
         <ReportProblemSharpIcon
           style={{
-            color: "red",
+            color: "rgb(217, 255, 0)",
             fontSize: "55px",
           }}
         />
       </div>
-      <p style={{color:"whitesmoke"}}>
-        you can add one in Button buttom
-      </p>
+      <h2
+        style={{
+          color: "rgb(217, 255, 0)",
+          
+        }}
+      >
+        لاتوجد مهام 
+      </h2>
+      <p style={{ color: "whitesmoke" }}>يمكنك ان تضيف مهمة من الزر ادناه</p>
     </div>
   );
 }

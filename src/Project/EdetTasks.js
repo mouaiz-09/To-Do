@@ -18,7 +18,6 @@ export default function EdetTasks({
   const handleClose = () => {
     FunctionhandleClose();
   };
- 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,7 +25,7 @@ export default function EdetTasks({
     const formJson = Object.fromEntries(formData.entries());
     const email = formJson.id;
     console.log(email);
-    FunctionedetTask(formJson)
+    FunctionedetTask(formJson);
 
     handleClose();
   };
@@ -34,18 +33,10 @@ export default function EdetTasks({
   return (
     <React.Fragment>
       <Dialog open={openstatue} onClose={handleClose}>
-        <DialogTitle>
-          {" "}
-          <h1>
-            {" "}
-            Task:<span style={{ color: "red", margin: "0" }}>
-              {" "}
-              {titel}
-            </span>{" "}
-          </h1>{" "}
-        </DialogTitle>
+        <h1 style={{ padding: "5px 20px" }}>
+          Task:<span style={{ color: "red", margin: "0" }}>{titel}</span>
+        </h1>{" "}
         <DialogContent sx={{ paddingBottom: 0 }}>
-         
           <form onSubmit={handleSubmit}>
             <TextField
               autoFocus
@@ -53,7 +44,7 @@ export default function EdetTasks({
               margin="dense"
               id="Titel"
               name="Titel"
-              label="Titel"
+              label="عنوان المهمة"
               type="text"
               fullWidth
               variant="standard"
@@ -62,11 +53,10 @@ export default function EdetTasks({
             />
             <TextField
               focused
-              required
               margin="dense"
               id="des"
               name="des"
-              label="info"
+              label="الوصف"
               type="text"
               fullWidth
               variant="standard"
@@ -75,12 +65,12 @@ export default function EdetTasks({
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
               <Button
-                startIcon={<EditSquareIcon/>}
+                startIcon={<EditSquareIcon />}
                 type="submit"
                 variant="contained"
                 style={{ background: "  " }}
               >
-               edite
+                edite
               </Button>
             </DialogActions>
           </form>
