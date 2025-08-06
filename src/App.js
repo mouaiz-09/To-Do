@@ -1,7 +1,8 @@
+import { CameraFrontSharp } from "@mui/icons-material";
 import "./App.css";
 import "./index.css";
 import ToDoList from "./Project/ToDoList";
-import {  lightBlue } from "@mui/material/colors";
+import { lightBlue } from "@mui/material/colors";
 
 export default function CircularIndeterminate() {
   return (
@@ -27,16 +28,18 @@ export default function CircularIndeterminate() {
             alignItems: "center",
           }}
         >
-          <h1
+          <h1 
+          className="logotitel"
             style={{
               fontSize: "25px",
               background: lightBlue[700],
               borderRadius: "15px",
               padding: "10px",
+             
             }}
           >
             {" "}
-          مهامي
+            مهامي
           </h1>
         </div>
 
