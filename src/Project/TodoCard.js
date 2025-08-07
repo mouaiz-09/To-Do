@@ -1,57 +1,171 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import {lightBlue} from "@mui/material/colors"
-import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
+import "../styles/Project.css";
 
-
+import EdetTasks from "./EdetTasks";
 /* icons  */
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import EditOffRoundedIcon from '@mui/icons-material/EditOffRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 
-export default function TodoCard({Titel ="...",des ='~~~~~~~',statue}) {
-  
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+export default function TodoCard({
+  Titel = "....",
+  des = "~~~~~~~",
+  statue,
+  IdTask,
+  functiondelet,
+  functionedetstate,
+  EdetTaskState,
+}) {
+  const [open, setope] = useState(false);
+
+  const deletTask = () => {
+    functiondelet(IdTask);
+  };
+  const edetstate = () => {
+    functionedetstate(IdTask);
+  };
+  const hendelopen = () => {
+    setope(true);
+  };
+
   return (
-    <Card   style={
-        {
-           width:"100% ",
-           background:lightBlue[800]
-           ,maxHeight:"100px",
-           overflow:"hidden",
-           display:"flex",
-           justifyContent:"space-between"
-        }
-         } >
-      <CardContent >
-        <Typography  sx={{ color: 'whitesmoke', fontSize: 25 }}> { Titel} </Typography>
-        <Typography  fontSize={14} color='textPrimary'>{des}</Typography>
-       
-      </CardContent>
-      <CardActions>
-   
-      <div>
+    <>
+      <Card
+        className="card"
+        style={{
+          width: "100% ",
+          background: statue ? "green" : "red",
+          maxHeight: "100px",
+          overflow: "hidden",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <CardContent
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "start",
+          }}
+        >
+          <Typography sx={{ color: "whitesmoke", fontSize: 20 }}>
+            {" "}
+            {Titel}{" "}
+          </Typography>
+          <Typography
+            fontSize={10}
+            style={{ color: "rgba(233, 233, 234, 0.73)" }}
+          >
+            {des}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <div>
+            {/* ==Btn Copleted==*/}
+            <Checkbox
+              className="Btn"
+              {...label}
+              onClick={(e) => {
+                edetstate();
+              }}
+              checked={statue}
+              icon={
+                <CheckCircleOutlineOutlinedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "rgb(255, 255, 255)",
+                    color: "#8bc349",
+                    borderRadius: "50%",
+                  }}
+                />
+              }
+              checkedIcon={<CheckCircleIcon color="success" />}
+            />
+            {/* ========Btn Copleted==============*/}
 
-      <Checkbox {...label}
-      icon={<CheckCircleOutlineOutlinedIcon  fontSize='medium'    />}
-       checkedIcon={<CheckCircleIcon  fontSize='large'  color='success'  />} />
+            {/*==Btn Edite==*/}
+            <Checkbox
+              className="Btn"
+              {...label}
+              onClick={() => {
+                hendelopen();
+              }}
+              checked={open}
+              checkedIcon={
+                <ModeEditOutlinedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "#1769aa",
+                    color: "rgb(255, 255, 255)",
+                    borderRadius: "50%",
+                    border: "1px solid rgb(255, 255, 255) ",
+                    padding: "1px",
+                  }}
+                />
+              }
+              icon={
+                <ModeEditOutlinedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "rgb(255, 255, 255)",
+                    color: "#1769aa",
+                    borderRadius: "50%",
+                    border: "1px solid #1769aa ",
+                    padding: "1px",
+                  }}
+                />
+              }
+            />
+            {/* ========Btn Edite==============*/}
+            {/*==Btn Delet==*/}
+            <Checkbox
+              className="Btn"
+              {...label}
+              onClick={() => {
+                deletTask();
+              }}
+              icon={
+                <DeleteOutlineRoundedIcon
+                  fontSize="medium"
+                  style={{
+                    background: "rgb(255, 255, 255)",
+                    color: "#b23c17",
+                    borderRadius: "50%",
+                    border: "1px solid #b23c17 ",
+                    padding: "1px",
+                  }}
+                />
+              }
+              checkedIcon={<DeleteRoundedIcon color="error" />}
+            />
 
-      <Checkbox {...label}
-        icon={< EditOutlinedIcon  fontSize='medium'/>}
-        checkedIcon={<EditOffRoundedIcon  color='info' fontSize='large' />}
-      />
-      <Checkbox {...label}
-        icon={< DeleteOutlineRoundedIcon color='warning'   fontSize='medium'/>}
-        checkedIcon={<DeleteRoundedIcon  color='error'   fontSize='large' />}
-      />
-    </div>
-  
-
-      </CardActions>
-    </Card>
+            {/* ========Btn Delet==============*/}
+          </div>
+        </CardActions>
+      </Card>
+      {open ? (
+        <EdetTasks
+          openstatue={open}
+          FunctionhandleClose={() => setope(false)}
+          titel={Titel}
+          des={des}
+          FunctionedetTask={(value) => {
+            EdetTaskState(IdTask, value);
+          }}
+        ></EdetTasks>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
