@@ -1,15 +1,13 @@
 :root {
   --color-main: rgb(20, 20, 30);
 }
-@import url('https://fonts.googleapis.com/css2?family=Blaka+Ink&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Blaka+Ink&display=swap");
 
 .Todo {
   width: 100%;
   height: 70vh;
 }
-body {
-  background-color: rgb(16, 128, 26);
-}
+
 a {
   color: whitesmoke;
   transition: 0.3s ease-in-out;
@@ -33,19 +31,23 @@ a:hover {
   direction: rtl;
   background-color: rgba(7, 107, 114, 0.774);
   border-radius: 10px !important;
+  flex-wrap: wrap;
+  
 }
 
 /*Menu */
 .ToDocontenet .menu {
   flex: 1;
+  width: 100% !important;
   height: 100% !important;
-
   background-color: rgba(2, 40, 58, 0.671);
   width: min-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
+  flex-shrink: 1;
+  border-left: 1px solid whitesmoke;
 }
 
 /*ContentTasks*/
@@ -59,6 +61,7 @@ a:hover {
   align-items: stretch;
   flex-direction: column;
   padding: 5px;
+  flex-shrink: 2;
 }
 .ContentTasks .ContentTasksBody {
   padding-top: 10px;
@@ -70,16 +73,62 @@ a:hover {
   max-height: 100% !important;
 }
 .card {
-  transition: 0.3s ease-in-out  !important 
+  transition: 0.3s ease-in-out !important;
 }
 .card:hover {
- padding: 10px 0px;
- box-shadow: 0px 0px 7px rgba(3, 3, 3, 0.4);
+  padding: 10px 0px;
+  box-shadow: 0px 0px 7px rgba(3, 3, 3, 0.4);
 }
-.Btn{
+.Btn {
   transition: 0.5s ease !important;
 }
-.Btn:hover{
+.Btn:hover {
   scale: 1.5;
-  
+}
+
+/*respone*/
+@media (max-width: 768px) {
+  .ToDocontenet {
+    flex-direction: column !important;
+  }
+  .menu {
+     flex: none !important;
+    height: 10% !important;
+  }
+  .ToDocontenet .MuiButtonGroup-root {
+    flex-direction: row !important;
+    width: 100% !important;
+   
+    height: 100% !important;
+  }
+  .MuiBox-root {
+    height: 100%; 
+    box-shadow: none !important;
+  }
+  .MuiButtonBase-root {
+    width: 100% !important;
+    box-shadow: none;
+    height: 100% !important ;
+  }
+  .Shmedai {
+    display: none !important;
+  }
+  .CpmletedBtn{
+    border-radius: 10px  0px 0px 0px !important;
+    border-right: 1px solid whitesmoke !important;
+  }
+  .all{
+    border-left: 1px solid whitesmoke !important;
+  }
+  .ContentTasksTop{
+    display: none !important;
+  }
+
+}
+.all{
+  border-bottom: 1px solid rgba(245, 245, 245, 0.589) !important;
+}
+.CpmletedBtn{
+ 
+  border-top: 1px solid rgba(245, 245, 245, 0.589) !important;
 }

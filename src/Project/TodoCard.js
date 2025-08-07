@@ -6,6 +6,7 @@ import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import EdetTasks from "./EdetTasks";
 
+
 import "../styles/Project.css";
 //delet
 import * as React from "react";
@@ -33,9 +34,10 @@ export default function TodoCard({
   functiondelet,
   functionedetstate,
   EdetTaskState,
-}) {
-  const [open, setope] = useState(false);
 
+}) {
+
+  const [open, setope] = useState(false);
   const deletTask = () => {
     //functiondelet(IdTask);
     handleClickOpen();
@@ -60,6 +62,7 @@ export default function TodoCard({
   const handleDelet = () => {
     functiondelet(IdTask);
     setOpenConfrem(false);
+   
   };
   function DeletF() {
     return (
@@ -223,6 +226,7 @@ export default function TodoCard({
         <></>
       )}
       <DeletF open />
+     
     </>
   );
 }

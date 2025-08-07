@@ -12,13 +12,15 @@ export default function MenuGroup({ functionEditeFilter, filter }) {
 
   const buttons = [
     <Button
+    className="all"
       onClick={() => {
         edet("ALL");
       }}
       style={{
         borderRadius: "0px  10px 0px 0px",
         padding: "10px",
-        background: filter == "ALL" ? blue[600] : "",
+        background: filter === "ALL" ? blue[600] : "",
+       
       }}
       key="one"
     >
@@ -26,26 +28,28 @@ export default function MenuGroup({ functionEditeFilter, filter }) {
     </Button>,
 
     <Button
+    
       onClick={() => {
         edet("Not Completed");
       }}
       style={{
         borderRadius: "0px  0px 0px 0px",
         padding: "10px",
-        background: filter == "Not Completed" ? "red" : "",
+        background: filter === "Not Completed" ? "red" : "",
+       
       }}
       key="three"
     >
       الغير منجزة
     </Button>,
     <Button
+      className="CpmletedBtn"
       onClick={() => {
         edet("Cpmleted");
       }}
       style={{
-        borderRadius: "0px  0px 0px 0px",
         padding: "10px",
-        background: filter == "Cpmleted" ? "green" : "",
+        background: filter === "Cpmleted" ? "green" : "",
       }}
       key="two"
     >

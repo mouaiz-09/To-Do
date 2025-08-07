@@ -1,7 +1,7 @@
 import "../styles/Project.css";
 import MenuGroup from "./MenuGroup";
 import SelectTasks from "./SelectTasks";
-import { lightBlue, lightGreen, purple, red } from "@mui/material/colors";
+import {  lightBlue, lightGreen, purple, red } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
@@ -10,12 +10,16 @@ import NOData from "./NoData";
 import ALLTASKS from "./ALLTasks";
 import Complted from "./Completed";
 import NotCompleted from "./NotCompleted";
+import MassegeAlert from "./MassegeAlert";
+
 // icosn
 import InstagramIcon from "@mui/icons-material/Instagram";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
 export default function ToDoList(params) {
+  // State & function For  Tasks:
+  const [Tasks, SetTASKS] = useState([]);
   // State & function For Open Close Dea Page:
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -24,10 +28,6 @@ export default function ToDoList(params) {
   const handleClickclose = () => {
     setOpen(false);
   };
-  // State & function For  Tasks:
-  const [Tasks, SetTASKS] = useState([
-    
-  ]);
 
   //ADD TASK IN Statae:
   function AddTask(Value) {
@@ -50,19 +50,24 @@ export default function ToDoList(params) {
       },
     ];
     localStorage.setItem("todos", JSON.stringify(data));
+    EdetMassege(3, "تم اﻹنشاء بنجاح");
   }
 
   //state for filter:
   const [filter, setfliter] = useState("ALL"); // ALL, Cpmleted , Not Completed
   function Result() {
-    if (filter == "ALL") {
+    if (filter ==="ALL") {
       return (
         <>
-          <ALLTASKS Datat={Tasks} SetDATA={SetTASKS}></ALLTASKS>
+          <ALLTASKS
+            Datat={Tasks}
+            SetDATA={SetTASKS}
+            MassegeFunction={EdetMassege}
+          ></ALLTASKS>
         </>
       );
     } else {
-      if (filter == "Cpmleted") {
+      if (filter === "Cpmleted") {
         return <Complted Datat={Tasks} SetDATA={SetTASKS}></Complted>;
       } else {
         return <NotCompleted Datat={Tasks} SetDATA={SetTASKS}></NotCompleted>;
@@ -86,7 +91,7 @@ export default function ToDoList(params) {
         main: lightGreen[400],
       },
       info: {
-        main: "rgb(255, 255, 255)",
+        main: lightBlue[500],
       },
       warning: {
         main: red[700],
@@ -94,27 +99,50 @@ export default function ToDoList(params) {
     },
   });
 
-  useEffect(()=>{
+  // Massege
+  const [Massege, SetMassege] = useState({
+    ID: "",
+    Value: "",
+    open: false,
+  });
+
+
+  function EdetMassege(idT, ValueT) {
+    SetMassege({
+      ID: idT,
+      value: ValueT,
+      open: true,
+    });
+  
+    
+    setTimeout(() => {
+      SetMassege({ ...Massege, open: false });
+    }, 2000);
+  }
+  //red from local storge
+  useEffect(() => {
     if (localStorage.todos) {
       const data = JSON.parse(localStorage.getItem("todos"));
       console.log(data);
-      if (data.length >=0) {
-       
-        SetTASKS(data)
+      if (data.length >= 0) {
+        SetTASKS(data);
       }
     }
-   
-   
-  }, [])
+  }, []);
 
   return (
     <ThemeProvider theme={themp}>
       <div className="Todo" onMouseMove={() => {}}>
         <div className="ToDocontenet">
           <div className="menu">
-            <MenuGroup functionEditeFilter={EditeFilter} filter={filter} />
+            <MenuGroup
+              className="BtnGroup"
+              functionEditeFilter={EditeFilter}
+              filter={filter}
+            />
             {/*sh medai */}
             <div
+              className="Shmedai"
               style={{
                 background: "rgb(0, 41, 51)",
                 padding: "7px",
@@ -131,7 +159,7 @@ export default function ToDoList(params) {
               >
                 <InstagramIcon />
               </a>
-            
+
               <a
                 href="https://github.com/mouaiz-09"
                 target="_blank"
@@ -192,6 +220,13 @@ export default function ToDoList(params) {
         FunctionhandleClose={handleClickclose}
         FunctionAddTask={AddTask}
       ></AddNewTask>
+
+      {/* alert massege */}
+      {Massege.open ? (
+        <MassegeAlert id={Massege.ID} value={Massege.Value}></MassegeAlert>
+      ) : (
+        <></>
+      )}
     </ThemeProvider>
   );
 }
