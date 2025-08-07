@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import EdetTasks from "./EdetTasks";
-import Delet from "./Delet";
+
 import "../styles/Project.css";
 //delet
 import * as React from "react";
