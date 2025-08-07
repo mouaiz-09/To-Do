@@ -4,14 +4,22 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
-import "../styles/Project.css";
-
 import EdetTasks from "./EdetTasks";
+import Delet from "./Delet";
+import "../styles/Project.css";
+//delet
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+//=======================delet========
 /* icons  */
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
-
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 
@@ -29,7 +37,8 @@ export default function TodoCard({
   const [open, setope] = useState(false);
 
   const deletTask = () => {
-    functiondelet(IdTask);
+    //functiondelet(IdTask);
+    handleClickOpen();
   };
   const edetstate = () => {
     functionedetstate(IdTask);
@@ -37,6 +46,53 @@ export default function TodoCard({
   const hendelopen = () => {
     setope(true);
   };
+
+  //function confirem delet tasks
+  const [openConfirem, setOpenConfrem] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpenConfrem(true);
+  };
+
+  const handleClose = () => {
+    setOpenConfrem(false);
+  };
+  const handleDelet = () => {
+    functiondelet(IdTask);
+    setOpenConfrem(false);
+  };
+  function DeletF() {
+    return (
+      <>
+        <Dialog
+          open={openConfirem}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" style={{ direction: "rtl" }}>
+            {"هل تريد حذف هذه المهمة؟؟"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              <span>"{Titel}"</span>" يؤدي هذا الفعل الى حذف
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>الغاء</Button>
+            <Button
+              onClick={handleDelet}
+              variant="contained"
+              color="warning"
+              autoFocus
+            >
+              حذف
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </>
+    );
+  }
 
   return (
     <>
@@ -166,6 +222,7 @@ export default function TodoCard({
       ) : (
         <></>
       )}
+      <DeletF open />
     </>
   );
 }
