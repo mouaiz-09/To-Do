@@ -1,4 +1,3 @@
-import { CameraFrontSharp } from "@mui/icons-material";
 import "./App.css";
 import "./index.css";
 import ToDoList from "./Project/ToDoList";
@@ -27,6 +26,8 @@ export default function CircularIndeterminate() {
             justifyContent: "center",
             alignItems: "center",
           }}
+
+          
         >
           <h1 
           className="logotitel"
